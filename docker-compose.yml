@@ -2,9 +2,9 @@ version: "3.6"
 services:
   opt_analysis:
     container_name: opt_analysis
-    image: sinaparchami/ai_server:opt_analysis
+    image: sinaparchami/opt_analysis:01
     ports:
-      - "7000:7000"
+      - "8000:8000"
     build:
       context: .
       dockerfile: Dockerfile
