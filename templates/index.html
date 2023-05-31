@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>OPG Analysis</title>
+    <script src="{{url_for('static', filename='templates/encode.js')}}"></script>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="icon" type="image/vnd.microsoft.icon" href='static/images/favicon.ico'>
+</head>
+
+<body style="background: #252525;">
+ <div class="result">
+	<h1>OPG Analysis</h1>
+        <form action="http://dev1.orcadent.de:9423/detect" method="post">
+            <label for="image-id">Image</label>
+            <br>
+            <p>Click on the "Choose File" button to upload a file:</p>
+            <br>
+                <input type="text" id="image-id" name="image" value="put your base64 image here"> <br><br>
+                <input id="image2-id" name="image2" accept="image/*" type="file"/><br><br>
+
+<script>
+  // get a reference to the file input
+  const fileInput = document.querySelector("input");
+
+  // listen for the change event so we can capture the file
+  fileInput.addEventListener("change", (e) => {
+    // get a reference to the file
+    const file = e.target.files[0];
+
+    // encode the file using the FileReader API
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // use a regex to remove data url part
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+
+      // log to console
+      // logs wL2dvYWwgbW9yZ...
+      console.log(base64String);
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+
+
+                <button type="submit" class="btn btn-primary btn-block btn-large" value="Submit">Submit</button>
+        </form>
+    <br>
+    <h4>{{ data }}</h4>
+    </div>
+</body>
+</html>

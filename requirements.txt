@@ -1,0 +1,11 @@
+opencv-python==4.0.1.24
+mrcnn==0.2
+numpy<1.17
+tensorflow==1.14.0
+scikit-image==0.16.2
+keras==2.0.8
+requests==2.25.0
+matplotlib==3.3.2
+scikit-learn
+flask
+waitress
